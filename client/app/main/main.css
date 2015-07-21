@@ -35,6 +35,18 @@
 }
 
 .about {
-    margin: 0 auto;
+    margin: 30px auto;
     text-align: center;
+}
+
+.chart-icon1{
+    color: red;   
+}
+
+.chart-icon2{
+    color: yellow;   
+}
+
+.chart-icon3{
+    color: blue;   
 }

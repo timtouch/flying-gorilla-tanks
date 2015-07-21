@@ -1,3 +1,19 @@
-<div class="col-md-12">
-This is the makepoll view.
+<form>
+    <div class="form-group">
+        <label for="inputTopic">Poll Topic</label>
+        <input type="text" class="form-control" id="inputTopic" placeholder="What's your favorite ocean?">
+    </div>
+    <div class="form-group">
+        <label for="inputOption1">Password</label>
+        <input type="text" class="form-control" id="inputOption1" placeholder="Pacific">
+        <input type="text" class="form-control" id="inputOption1" placeholder="Atlantic">
+    </div>
+    <button>Add Option</button>
+    <button>Submit</button>
+</form>
+    
+
+<div class="chart-container col-md-12" ng-controller="BarCtrl">
+    <h1 ng-click="increaseData()">This is a chart!</h1>
+    <canvas id="bar" class="chart chart-bar" data="data" labels="labels" width="200"></canvas>
 </div>
