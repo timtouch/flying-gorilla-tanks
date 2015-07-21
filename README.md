@@ -1,3 +1,3 @@
-#Useful commands for me
-- As you build your app, you should frequently commit changes to your codebase. You can do this by running *git commit -am "your commit message"*. Note that you should replace "your commit message" with a brief summary of the changes you made to your code.
-- You can push these new commits to GitHub by running *git push origin master*, and to Heroku by running **grunt --force && grunt buildcontrol:heroku**.
+#Commands for me to remember
+- As you build your app, you should frequently commit changes to your codebase. You can do this by running **git commit -am "your commit message"**. Note that you should replace "your commit message" with a brief summary of the changes you made to your code.
+- You can push these new commits to GitHub by running **git push origin master**, and to Heroku by running **grunt --force && grunt buildcontrol:heroku**.
