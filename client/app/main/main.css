@@ -30,10 +30,11 @@
 }
 
 .logo {
-    width: 200px;
+    width: 100px;
     height: auto;
 }
 
 .about {
     margin: 0 auto;
+    text-align: center;
 }
