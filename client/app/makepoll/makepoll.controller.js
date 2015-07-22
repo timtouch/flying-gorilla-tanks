@@ -13,8 +13,10 @@ angular.module('workspaceApp')
       
     };
     $scope.options = ['Pacific','Atlantic'];
-    $scope.labels = ['Foo','Bar'];
-    $scope.data = [1,2];
+    
+    //Initial poll values
+    $scope.labels = [];
+    $scope.data = [1,1];
     $scope.topic = '';
     
     $scope.increaseData = function(){
@@ -23,6 +25,7 @@ angular.module('workspaceApp')
     
     $scope.addOption = function(){
       $scope.options.push('Option' + ($scope.options.length + 1));
+      $scope.data.push(1);
     };
     
     $scope.addLabels = function(){
@@ -31,6 +34,7 @@ angular.module('workspaceApp')
     };
     
     $scope.submitPoll = function(){
+      $scope.poll.topic = $scope.topic;
       $scope.poll.data = $scope.data;
       $scope.poll.labels = $scope.labels;
       console.log($scope.data,$scope.labels);
