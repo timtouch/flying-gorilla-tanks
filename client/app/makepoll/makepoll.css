@@ -1,7 +1,5 @@
-body {
-    text-align: center;
+.pieChart {
+    text-align:center;
+    margin: 0 auto;
     width: 500px;
-}
-.chart-container {
-    width: 400px;
 }
