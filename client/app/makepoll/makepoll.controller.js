@@ -12,31 +12,41 @@ angular.module('workspaceApp')
       data: [81, 56, 55]
       
     };
+    
     $scope.options = ['Pacific','Atlantic'];
+    
+    $scope.choosenOption = {};
     
     //Initial poll values
     $scope.labels = [];
     $scope.data = [1,1];
     $scope.topic = '';
+    $scope.hasMadePoll = false;
+    
+    
     
     $scope.increaseData = function(){
       $scope.data[0]++;
     };
     
     $scope.addOption = function(){
-      $scope.options.push('Option' + ($scope.options.length + 1));
+      $scope.options.push('Option ' + ($scope.options.length + 1));
       $scope.data.push(1);
     };
     
-    $scope.addLabels = function(){
-      $scope.labels.push($scope.labels.length);
-      $scope.data.push(0);
+    $scope.choosen = function(){
+      console.log("The option you choose is " + $scope.choosenOption.opt);
     };
+    
     
     $scope.submitPoll = function(){
       $scope.poll.topic = $scope.topic;
       $scope.poll.data = $scope.data;
       $scope.poll.labels = $scope.labels;
-      console.log($scope.data,$scope.labels);
-    }
+      $scope.hasMadePoll = true;
+      
+      $scope.labels = [];
+      $scope.data = [1,1];
+      $scope.topic = '';
+    };
   });

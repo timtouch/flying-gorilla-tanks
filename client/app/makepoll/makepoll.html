@@ -1,23 +1,35 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="pieChart" ng-controller="PieCtrl">
-    <form name='pollForm' novalidate>
+    <form name='makepollForm' ng-submit="makepollForm.$valid && submitPoll()" ng-hide="hasMadePoll" novalidate>
         <div class="form-group">
             <label for="inputTopic">Poll Topic</label>
-            <input type="text" class="form-control" id="inputTopic" placeholder="What's your favorite ocean?" ng-model="topic" required>
+            <input type="text" class="form-control" id="inputTopic" placeholder="What's your favorite ocean?" ng-model="topic" required/>
         </div>
         <div class="form-group">
-            <label for="inputOption1">Options</label>
+            <label for="inputOption">Options</label>
             <div ng-repeat="option in options track by $index">
-                <input type="text" class="form-control" id="inputOption1" placeholder="{{option}}" ng-model="labels[$index]" required>
+                <input type="text" class="form-control inputOption" placeholder="{{option}}" ng-model="labels[$index]" required/>
             </div>
         </div>
+        <p>{{labels}}</p>
         <button ng-click='addOption()'>Add Option</button>
-        <button ng-click='submitPoll()'>Submit</button>
+        <button type="submit" value="Submit">Submit</button>
     </form>
     
+    <div class="userPoll" ng-show="hasMadePoll">
+        <h1>{{poll.topic}}</h1>
+        <form class="pollForm" ng-submit="choosen()">
+            <div class="radio"ng-repeat="label in poll.labels">
+                <label><input type="radio" name="radioOpt" ng-model="choosenOption.opt" ng-value="label"/>{{label}}</label>
+            </div>
+            <button type="submit" value="Submit">Submit</button>
+        </form>
+    </div>
+    
+    
     <div class="chart-container col-md-12">
-        <h1 ng-click="addLabels()">{{poll.topic}}</h1>
+        <h1>{{poll.topic}}</h1>
         <canvas id="pie" class="chart chart-pie" data="poll.data" labels="poll.labels" legend="true"></canvas>
     </div>
 </div>
