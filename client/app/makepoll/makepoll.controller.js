@@ -36,6 +36,8 @@ angular.module('workspaceApp')
     
     $scope.choosen = function(){
       console.log("The option you choose is " + $scope.choosenOption.opt);
+      var indexOfOption = $scope.poll.labels.indexOf($scope.choosenOption.opt);
+      $scope.poll.data[indexOfOption]++;
     };
     
     
