@@ -17,20 +17,19 @@ angular.module('workspaceApp')
     $scope.hasMadePoll = false;
     $scope.hasMadeGraph = false;
 
-    /*
+    
     $http.get('/api/polls').success(function(polls) {
       $scope.polls = polls;
       console.log(polls);
     });
-
+    
     $scope.addPoll = function() {
       if($scope.poll === {}) {
         return;
       }
       $http.post('/api/polls', $scope.poll);
-      $scope.poll = {};
     };
-
+    /*
     $scope.deleteThing = function(poll) {
       $http.delete('/api/polls/' + poll._id);
     };
@@ -42,10 +41,11 @@ angular.module('workspaceApp')
     };
     
     $scope.choosen = function(){
+      $scope.hasMadeGraph = true;
       console.log("The option you choose is " + $scope.choosenOption.opt);
       var indexOfOption = $scope.poll.labels.indexOf($scope.choosenOption.opt);
       $scope.poll.data[indexOfOption]++;
-      $scope.hasMadeGraph = true;
+      console.log($scope.poll.data);
     };
     
     $scope.reset = function(){
@@ -60,7 +60,7 @@ angular.module('workspaceApp')
       $scope.poll.labels = $scope.labels;
       $scope.hasMadePoll = true;
       
-      //$scope.addPoll();
+      $scope.addPoll();
       
       $scope.reset();
     };
