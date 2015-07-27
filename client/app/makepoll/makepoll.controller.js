@@ -1,17 +1,10 @@
 'use strict';
 
 angular.module('workspaceApp')
-  .controller('MakepollCtrl', function($scope){
-    $scope.message = 'Hello';
-  })
-  .controller('PieCtrl', function($scope){
+  .controller('MakepollCtrl', function($scope, $http){
     
-    $scope.poll = {
-      topic: "What is your favorite ocean?",
-      labels: ['Pacific', 'Atlantic', 'Indian'],
-      data: [81, 56, 55]
-      
-    };
+    $scope.polls = [];
+    $scope.poll = {};
     
     $scope.options = ['Pacific','Atlantic'];
     
@@ -19,27 +12,47 @@ angular.module('workspaceApp')
     
     //Initial poll values
     $scope.labels = [];
-    $scope.data = [1,1];
+    $scope.data = [0,0];
     $scope.topic = '';
     $scope.hasMadePoll = false;
-    
-    
-    
-    $scope.increaseData = function(){
-      $scope.data[0]++;
+    $scope.hasMadeGraph = false;
+
+    /*
+    $http.get('/api/polls').success(function(polls) {
+      $scope.polls = polls;
+      console.log(polls);
+    });
+
+    $scope.addPoll = function() {
+      if($scope.poll === {}) {
+        return;
+      }
+      $http.post('/api/polls', $scope.poll);
+      $scope.poll = {};
     };
+
+    $scope.deleteThing = function(poll) {
+      $http.delete('/api/polls/' + poll._id);
+    };
+    */
     
     $scope.addOption = function(){
       $scope.options.push('Option ' + ($scope.options.length + 1));
-      $scope.data.push(1);
+      $scope.data.push(0);
     };
     
     $scope.choosen = function(){
       console.log("The option you choose is " + $scope.choosenOption.opt);
       var indexOfOption = $scope.poll.labels.indexOf($scope.choosenOption.opt);
       $scope.poll.data[indexOfOption]++;
+      $scope.hasMadeGraph = true;
     };
     
+    $scope.reset = function(){
+      $scope.labels = [];
+      $scope.data = [0,0];
+      $scope.topic = '';
+    };
     
     $scope.submitPoll = function(){
       $scope.poll.topic = $scope.topic;
@@ -47,8 +60,8 @@ angular.module('workspaceApp')
       $scope.poll.labels = $scope.labels;
       $scope.hasMadePoll = true;
       
-      $scope.labels = [];
-      $scope.data = [1,1];
-      $scope.topic = '';
+      //$scope.addPoll();
+      
+      $scope.reset();
     };
   });

@@ -1,6 +1,6 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="pieChart" ng-controller="PieCtrl">
+<div class="pieChart" ng-controller="MakepollCtrl">
     <form name='makepollForm' ng-submit="makepollForm.$valid && submitPoll()" ng-hide="hasMadePoll" novalidate>
         <div class="form-group">
             <label for="inputTopic">Poll Topic</label>
@@ -12,12 +12,11 @@
                 <input type="text" class="form-control inputOption" placeholder="{{option}}" ng-model="labels[$index]" required/>
             </div>
         </div>
-        <p>{{labels}}</p>
         <button ng-click='addOption()'>Add Option</button>
         <button type="submit" value="Submit">Submit</button>
     </form>
     
-    <div class="userPoll" ng-show="hasMadePoll">
+    <div class="userPoll" ng-show="hasMadePoll && !hasMadeGraph">
         <h1>{{poll.topic}}</h1>
         <form class="pollForm" ng-submit="choosen()">
             <div class="radio"ng-repeat="label in poll.labels">
@@ -28,7 +27,7 @@
     </div>
     
     
-    <div class="chart-container col-md-12">
+    <div class="chart-container col-md-12" ng-show="hasMadeGraph">
         <h1>{{poll.topic}}</h1>
         <canvas id="pie" class="chart chart-pie" data="poll.data" labels="poll.labels" legend="true"></canvas>
     </div>
