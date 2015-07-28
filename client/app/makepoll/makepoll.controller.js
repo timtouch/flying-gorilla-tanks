@@ -4,7 +4,9 @@ angular.module('workspaceApp')
   .controller('MakepollCtrl', function($scope, $http){
     
     $scope.polls = [];
-    $scope.poll = {};
+    $scope.poll = {
+      voters_id: []
+    };
     
     $scope.options = ['Pacific','Atlantic'];
     
@@ -17,6 +19,10 @@ angular.module('workspaceApp')
     $scope.hasMadePoll = false;
     $scope.hasMadeGraph = false;
 
+    $http.get('/api/users/me').success(function(currUser){
+      $scope.poll.owner_id = currUser._id;
+      console.log($scope.poll.owner_id);
+    }); 
     
     $http.get('/api/polls').success(function(polls) {
       $scope.polls = polls;
@@ -27,13 +33,11 @@ angular.module('workspaceApp')
       if($scope.poll === {}) {
         return;
       }
-      $http.post('/api/polls', $scope.poll);
+      $http.post('/api/polls', $scope.poll).success(function(addedPoll){
+        $scope.poll = addedPoll;
+        console.log("Added Poll is: " + $scope.poll + " and _id is: " + $scope.poll._id);
+      });
     };
-    /*
-    $scope.deleteThing = function(poll) {
-      $http.delete('/api/polls/' + poll._id);
-    };
-    */
     
     $scope.addOption = function(){
       $scope.options.push('Option ' + ($scope.options.length + 1));
@@ -42,10 +46,13 @@ angular.module('workspaceApp')
     
     $scope.choosen = function(){
       $scope.hasMadeGraph = true;
-      console.log("The option you choose is " + $scope.choosenOption.opt);
       var indexOfOption = $scope.poll.labels.indexOf($scope.choosenOption.opt);
+      
       $scope.poll.data[indexOfOption]++;
-      console.log($scope.poll.data);
+      $scope.poll.voters_id.push($scope.poll.owner_id);
+      console.log("The voters are " + $scope.poll.voters_id);
+      console.log($scope.poll);
+      $http.put('/api/polls/' + $scope.poll._id, $scope.poll);
     };
     
     $scope.reset = function(){
