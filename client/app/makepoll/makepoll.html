@@ -16,5 +16,8 @@
         <button type="submit" value="Submit">Submit</button>
     </form>
     
-    <polldisplay></polldisplay>
+    <div class="share-link" ng-show="hasMadePoll">
+        <h2>Share your poll!</h2>
+        <div class="well well-sm">http://flying-gorilla-tank.herokuapp.com/poll/{{poll._id}}</div>
+    </div>
 </div>

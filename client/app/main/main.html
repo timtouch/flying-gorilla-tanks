@@ -1,11 +1,12 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="chart-header">
+<div class="chart-header" ng-controller="MainCtrl">
   <header class="hero-unit" id="banner">
     <div class="container">
-      <h1>Poll Dancer</h1>
+      <h1>Poll Arity</h1>
       <p class="lead">Quickly made polls</p>
-      <a href='/signup'><button class="btn btn-danger btn-lg" >Sign Up Now</button></a>
+      <a href='/signup'><button class="btn btn-danger btn-lg" ng-hide="isLoggedIn()">Sign Up Now</button></a>
+      <a href='/makepoll'><button class="btn btn-success btn-lg" ng-show="isLoggedIn()">Make a Poll</button></a>
     </div>
   </header>
 </div>
@@ -14,7 +15,7 @@
     <div class="col-md-4">
       <i class="chart-icon1 fa fa-area-chart fa-4x"></i>
       <h2>Easy to Use</h2>
-      <p>With Poll Dancer, you can easily create hundreds of polls.
+      <p>With Poll Arity, you can easily create hundreds of polls.
         <ul>
           <li>What's their favorite color?</li>
           <li>Who's their favorite character in Game of Thrones?</li>
@@ -37,9 +38,8 @@
       It especially does not taste like a mix of rainbows and tartar sauce.</em>
     </div>
   </div>
-
-  
 </div>
+
 
 <footer class="footer">
   <div class="container">

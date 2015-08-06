@@ -20,6 +20,15 @@ exports.show = function(req, res) {
   });
 };
 
+//Get list of polls from a user
+exports.indexUser = function(req, res){
+  Poll.find({ owner_id: req.params.userid }, function(err, polls){
+    if (err) { return res.send(500, err) }
+    if(!polls) { return res.status(404).send('Not Found'); }
+    return res.status(200).json(polls);
+  });
+};
+
 // Creates a new poll in the DB.
 exports.create = function(req, res) {
   Poll.create(req.body, function(err, poll) {
