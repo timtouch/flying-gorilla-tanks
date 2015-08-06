@@ -1,0 +1,17 @@
+.poll-list {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.deletePoll {
+    color: #D63B3B;
+    float: right;
+    top: 50%;
+    transition: all 0.2s ease;
+}
+
+.deletePoll:hover {
+    color: #551717;
+    cursor: pointer;
+}

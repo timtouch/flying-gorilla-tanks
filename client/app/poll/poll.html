@@ -1,0 +1,19 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="userPoll"ng-controller="PollCtrl">
+    <div ng-hide="hasVoted">
+        <h1>{{poll.topic}}</h1>
+        <form class="pollForm" ng-submit="choosen()">
+            <div class="radio"ng-repeat="label in poll.labels">
+                <label><input type="radio" name="radioOpt" ng-model="choosenOption.opt" ng-value="label"/>{{label}}</label>
+            </div>
+            <button type="submit" value="Submit">Submit</button>
+        </form>
+    </div>
+    
+    
+    <div class="chart-container col-md-12" ng-if="hasVoted">
+        <h1>{{poll.topic}}</h1>
+        <canvas id="pie" class="chart chart-pie" data="poll.data" labels="poll.labels" legend="true"></canvas>
+    </div>
+</div>

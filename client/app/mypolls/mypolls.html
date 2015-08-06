@@ -1,0 +1,5 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<ul class="poll-list list-group" ng-controller="MypollsCtrl">
+    <li class="list-group-item" ng-repeat="poll in polls"><a ng-href ="/poll/{{poll._id}}">{{poll.topic}}</a> <i class="fa fa-times-circle-o fa-2x deletePoll" ng-click="removePoll(poll)"></i></li>
+</ul>
